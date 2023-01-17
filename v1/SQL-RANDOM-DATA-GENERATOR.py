@@ -1,0 +1,264 @@
+from FoxyFunctions import ff
+import subprocess
+import os
+import random
+
+class main:
+    def __init__(self):
+        # activate GUI
+        main_menu = (("RUN", self.run), ("CSV -> SQL", self.csv_to_sql), ("EDIT SCRIPT", self.edit_script), ("RESOURCES", self.resources))
+        self.ff = ff("SQL-RANDOM-DATA-GENERATOR", "1.0", main_menu)
+
+        # run gui
+        self.ff.run()
+    
+    def run(self):
+        self.ff.clear()
+        # read script
+        script = self.ff.read_script("script.txt")
+
+        # get settings
+        scr = self.ff.settings_get("Resources location")
+        table = self.ff.settings_get("Table Name")
+        ent = int(self.ff.settings_get("Enteries"))
+        outputfilelocation = self.ff.settings_get("Output location")
+        outputfilelocation = outputfilelocation+"/"+"output.sql"
+
+        # read script
+        SCRIPT = []
+        for line in script:
+            # SPLIT LINE TO PARAMETERS
+            line = line.split(" ")
+            field_name = line[0] # the name of the field you want to generate for. e.g. username
+            lst_filename = line[1] # name of the .lst file to take data from. e.g. first_names.lst
+
+            # ADD TO SCRIPT
+            SCRIPT.append((field_name, lst_filename))
+        
+        # create datasheet
+        DATA = {}
+        for line in SCRIPT:
+            field_name = line[0]
+            lst_filename = line[1]
+            file = open(scr+"/"+lst_filename, 'r', encoding='utf-8')
+            lines = file.readlines()
+            file.close()
+            for l in lines:
+                l = l.replace("\n", "")
+                l = l.replace("'", "")
+                if not field_name in DATA:
+                    DATA[field_name] = []
+                DATA[field_name].append("'"+l+"'")
+
+        # calculate workload
+        steps = 0
+        for x in range(ent):
+            for line in SCRIPT:
+                steps += 1
+        
+        # generate sql
+        steps_done = 0
+        max_enteries = 0
+        output = ""
+        entery = 0
+        for x in range(ent):
+            # display sql command
+            if max_enteries == 0:
+                max_enteries = 100
+
+                # start a new INSERT
+                self.ff.write("")
+
+                output = "INSERT INTO "+table+" ("
+                for line in SCRIPT:
+                    field_name = line[0]
+                    output += field_name+", "
+                output = output[:-2]
+                output += ") VALUES"
+                self.ff.write(output)
+            
+            # display line
+            max_enteries -= 1
+            output = "("
+            for line in SCRIPT:
+                field_name = line[0]
+                lst_filename = line[1]
+
+                # update progress bar
+                steps_done += 1
+                percent = steps_done / steps
+                self.ff.progress_bar_value_set(percent*100)
+                
+                # MAKE OUTPUT
+                # select random entity
+                i = random.randint(0, len(DATA[field_name])-1)
+                selected_column = DATA[field_name][i]
+                output += selected_column+", "
+            output = output[:-2]
+            output += "),"
+            
+            #self.ff.write("x="+str(x)+" ent="+str(ent)+" entery="+str(entery))
+            if x == ent-1 or max_enteries == 0:
+                output = output[:-2]
+                output += ");"
+            entery += 1
+            #self.ff.write("["+str(entery)+"] "+output)
+            self.ff.write(output)
+        
+        self.ff.save(outputfilelocation)
+        os.popen(outputfilelocation)
+
+    def csv_to_sql(self):
+        scr = self.ff.settings_get("Resources location")
+        self.ff.msg("Make sure your .csv file is in: "+scr)
+        self.ff.form("Transfer .csv to .sql file", (("File name", "myfile.csv", True, True),), self.csv_to_sql_submit)
+    
+    def csv_to_sql_submit(self, data):
+        self.ff.clear()
+        # get settings
+        scr = self.ff.settings_get("Resources location")
+        table = self.ff.settings_get("Table Name")
+        outputfilelocation = self.ff.settings_get("Output location")
+        outputfilelocation = outputfilelocation+"/"+"output.sql"
+        
+        # open csv file
+        csvfile = data["File name"]
+        file = self.ff.csv_to_list(scr+"/"+csvfile)
+        
+        # calculate workload
+        steps = 0
+        for line in file:
+            steps += 1
+        
+        # generate sql
+        steps_done = 0
+        max_enteries = 0
+        output = ""
+        i = 0
+        for line in file:
+            i += 1
+            # update progress bar
+            steps_done += 1
+            percent = steps_done / steps
+            self.ff.progress_bar_value_set(percent*100)
+            
+            # display sql command
+            if max_enteries == 0:
+                max_enteries = 100
+
+                # start a new INSERT
+                self.ff.write("")
+                output = "INSERT INTO "+table+" ("
+                headers = file[0]
+                for header in headers:
+                    output += header+", "
+                output = output[:-2]
+                output += ") VALUES"
+                self.ff.write(output)
+            
+            # display line
+            max_enteries -= 1
+            output = "("
+            for col in line:
+                col = col.replace("'", "")
+                output += "'"+col+"'"+", "
+            output = output[:-2]
+            output += "),"
+            
+            #self.ff.write("x="+str(x)+" ent="+str(ent)+" entery="+str(entery))
+            if i == len(file) or max_enteries == 0:
+                output = output[:-2]
+                output += ");"
+            #self.ff.write("["+str(entery)+"] "+output)
+            self.ff.write(output)
+        self.ff.save(outputfilelocation)
+        os.popen(outputfilelocation)
+
+    def resources(self):
+        scr = self.ff.settings_get("Resources location")
+        subprocess.Popen(r'explorer /select,"'+scr+'"')
+
+    def edit_script(self):
+        os.popen("script.txt")
+
+"""
+    def run(self):
+        location = self.ff.settings_get("Folder1")
+        if os.path.isdir(location):
+            
+            # calculate workload
+            steps = 0
+            for root, folders, files in os.walk(location):
+                for file in files:
+                    steps += 1
+            # run
+            steps_done = 0
+            for root, folders, files in os.walk(location):
+                for file in files:
+                    steps_done += 1
+                    percent = steps_done / steps
+                    self.ff.progress_bar_value_set(percent*100)
+                    self.ff.write(root+"/"+file)
+        else:
+            self.ff.error("There is no such location: "+location)
+
+    def show_db(self):
+        self.ff.database_display(self.db_loc, "users", self.add, self.edit, self.delete)
+    
+    def add(self):
+        self.ff.form("Add a new user", (("First Name", "", True, True), ("Last Name", "", True, True), "Phone number"), self.add_submit)
+
+    def add_submit(self, data):
+        fname = data["First Name"]
+        lname = data["Last Name"]
+        phone = data["Phone number"]
+
+        self.cur.execute("INSERT INTO users (first_name, last_name, phone) VALUES('"+fname+"','"+lname+"','"+phone+"')")
+        self.con.commit()
+        self.ff.update_database_display()
+
+    def edit(self, primary_key):
+        primary_key = primary_key[0]
+        self.cur.execute("SELECT * FROM users")
+        alldata = self.cur.fetchall()
+        selecteddata = alldata[primary_key]
+        userid = selecteddata[0]
+        fname = selecteddata[1]
+        lname = selecteddata[2]
+        phone = selecteddata[3]
+
+        self.ff.form("Edit user", (("User ID", userid, False), ("First Name", fname, True, True), ("Last Name", lname, True, True), ("Phone number", phone)), self.edit_submit)
+
+    def edit_submit(self, data):
+        userid = data["User ID"]
+        fname = data["First Name"]
+        lname = data["Last Name"]
+        phone = data["Phone number"]
+        
+        self.cur.execute("UPDATE users SET first_name = '"+fname+"', last_name = '"+lname+"', phone = '"+phone+"' WHERE userid = '"+userid+"'")
+        self.con.commit()
+        self.ff.update_database_display()
+
+    def delete(self, primary_key):
+        primary_key = primary_key[0]
+        self.cur.execute("SELECT * FROM users")
+        alldata = self.cur.fetchall()
+        selecteddata = alldata[primary_key]
+        userid = selecteddata[0]
+        fname = selecteddata[1]
+        lname = selecteddata[2]
+
+        if self.ff.question("Delete "+fname+" "+lname+"?") == "yes":
+            self.cur.execute("DELETE FROM users WHERE userid = "+str(userid))
+            self.con.commit()
+            self.ff.update_database_display()
+
+    def script(self):
+
+    
+    def script_edit(self):
+        
+
+"""   
+
+main()

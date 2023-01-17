@@ -1,0 +1,4 @@
+first_name first_names.lst
+last_name last_names.lst
+phone phones.lst
+sex genders.lst
