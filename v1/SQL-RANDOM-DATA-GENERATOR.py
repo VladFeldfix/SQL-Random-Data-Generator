@@ -28,9 +28,8 @@ class main:
         SCRIPT = []
         for line in script:
             # SPLIT LINE TO PARAMETERS
-            line = line.split(" ")
-            field_name = line[0] # the name of the field you want to generate for. e.g. username
-            lst_filename = line[1] # name of the .lst file to take data from. e.g. first_names.lst
+            field_name = line[1][0] # the name of the field you want to generate for. e.g. username
+            lst_filename = line[1][1] # name of the .lst file to take data from. e.g. first_names.lst
 
             # ADD TO SCRIPT
             SCRIPT.append((field_name, lst_filename))
@@ -110,8 +109,7 @@ class main:
 
     def csv_to_sql(self):
         scr = self.ff.settings_get("Resources location")
-        self.ff.msg("Make sure your .csv file is in: "+scr)
-        self.ff.form("Transfer .csv to .sql file", (("File name", "myfile.csv", True, True),), self.csv_to_sql_submit)
+        self.ff.form("Transfer .csv to .sql file", ({"LABEL":"File name", "TYPE":"FILEDIALOG", "LOCATION":scr, "FILETYPE":".csv"}, {"LABEL":"File nameF", "TYPE":"FILEDIALOG", "LOCATION":scr, "FILETYPE":".csv"}), self.csv_to_sql_submit)
     
     def csv_to_sql_submit(self, data):
         self.ff.clear()
