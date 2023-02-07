@@ -109,7 +109,7 @@ class main:
 
     def csv_to_sql(self):
         scr = self.ff.settings_get("Resources location")
-        self.ff.form("Transfer .csv to .sql file", ({"LABEL":"File name", "TYPE":"FILEDIALOG", "LOCATION":scr, "FILETYPE":".csv"}, {"LABEL":"File nameF", "TYPE":"FILEDIALOG", "LOCATION":scr, "FILETYPE":".csv"}), self.csv_to_sql_submit)
+        self.ff.form("Transfer .csv to .sql file", ({"LABEL":"File name", "TYPE":"FILEDIALOG", "FD-LOCATION":scr, "FD-FILETYPE":".csv", "FD-TITLE":""}, {"LABEL":"File nameF", "TYPE":"FILEDIALOG"}), self.csv_to_sql_submit)
     
     def csv_to_sql_submit(self, data):
         self.ff.clear()
