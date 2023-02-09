@@ -1,4 +1,4 @@
 Resources location --> resources
 Output location --> output
 Table Name --> users
-Enteries --> 5000
+Enteries --> 50

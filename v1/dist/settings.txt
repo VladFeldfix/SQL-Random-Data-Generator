@@ -1,4 +1,4 @@
-Resources location --> D:\Users\Vlad\Projects\Applications\SQL-RANDOM-DATA-GENERATOR\v1\resources
-Output location --> D:\Users\Vlad\Desktop\New folder
+Resources location --> resources
+Output location --> output
 Table Name --> users
-Enteries --> 50
+Enteries --> 10

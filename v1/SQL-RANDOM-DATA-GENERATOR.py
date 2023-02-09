@@ -6,7 +6,7 @@ import random
 class main:
     def __init__(self):
         # activate GUI
-        main_menu = (("RUN", self.run), ("CSV -> SQL", self.csv_to_sql), ("EDIT SCRIPT", self.edit_script), ("RESOURCES", self.resources))
+        main_menu = (("RUN", self.run), ("CSV -> SQL", self.csv_to_sql), ("EDIT SCRIPT", self.edit_script), ("RESOURCES", self.resources), ("OUTPUT", self.openoutput))
         self.ff = ff("SQL-RANDOM-DATA-GENERATOR", "1.0", main_menu)
 
         # run gui
@@ -39,6 +39,7 @@ class main:
         for line in SCRIPT:
             field_name = line[0]
             lst_filename = line[1]
+            data_type = line[2]
             file = open(scr+"/"+lst_filename, 'r', encoding='utf-8')
             lines = file.readlines()
             file.close()
@@ -47,7 +48,10 @@ class main:
                 l = l.replace("'", "")
                 if not field_name in DATA:
                     DATA[field_name] = []
-                DATA[field_name].append("'"+l+"'")
+                if data_type == "VARCHAR":
+                    DATA[field_name].append("'"+l+"'")
+                else:
+                    DATA[field_name].append(l)
 
         # calculate workload
         steps = 0
@@ -109,7 +113,7 @@ class main:
 
     def csv_to_sql(self):
         scr = self.ff.settings_get("Resources location")
-        self.ff.form("Transfer .csv to .sql file", ({"LABEL":"File name", "TYPE":"FILEDIALOG", "FD-LOCATION":scr, "FD-FILETYPE":".csv", "FD-TITLE":""}, {"LABEL":"File nameF", "TYPE":"FILEDIALOG"}), self.csv_to_sql_submit)
+        self.ff.form("Transfer .csv to .sql file", ({"LABEL":"File name", "TYPE":"FILEDIALOG", "FD-LOCATION":scr, "FD-FILETYPES":("csv",), "FD-TITLE":"Load .csv file"}, ), self.csv_to_sql_submit)
     
     def csv_to_sql_submit(self, data):
         self.ff.clear()
@@ -121,7 +125,7 @@ class main:
         
         # open csv file
         csvfile = data["File name"]
-        file = self.ff.csv_to_list(scr+"/"+csvfile)
+        file = self.ff.csv_to_list(csvfile)
         
         # calculate workload
         steps = 0
@@ -158,8 +162,12 @@ class main:
             max_enteries -= 1
             output = "("
             for col in line:
-                col = col.replace("'", "")
-                output += "'"+col+"'"+", "
+                if not self.isnumber(col):
+                    col = col.replace('"', "")
+                    col = col.replace("'", "")
+                    output += "'"+col+"'"+", "
+                else:
+                    output += col+", "
             output = output[:-2]
             output += "),"
             
@@ -178,85 +186,15 @@ class main:
 
     def edit_script(self):
         os.popen("script.txt")
-
-"""
-    def run(self):
-        location = self.ff.settings_get("Folder1")
-        if os.path.isdir(location):
-            
-            # calculate workload
-            steps = 0
-            for root, folders, files in os.walk(location):
-                for file in files:
-                    steps += 1
-            # run
-            steps_done = 0
-            for root, folders, files in os.walk(location):
-                for file in files:
-                    steps_done += 1
-                    percent = steps_done / steps
-                    self.ff.progress_bar_value_set(percent*100)
-                    self.ff.write(root+"/"+file)
-        else:
-            self.ff.error("There is no such location: "+location)
-
-    def show_db(self):
-        self.ff.database_display(self.db_loc, "users", self.add, self.edit, self.delete)
     
-    def add(self):
-        self.ff.form("Add a new user", (("First Name", "", True, True), ("Last Name", "", True, True), "Phone number"), self.add_submit)
-
-    def add_submit(self, data):
-        fname = data["First Name"]
-        lname = data["Last Name"]
-        phone = data["Phone number"]
-
-        self.cur.execute("INSERT INTO users (first_name, last_name, phone) VALUES('"+fname+"','"+lname+"','"+phone+"')")
-        self.con.commit()
-        self.ff.update_database_display()
-
-    def edit(self, primary_key):
-        primary_key = primary_key[0]
-        self.cur.execute("SELECT * FROM users")
-        alldata = self.cur.fetchall()
-        selecteddata = alldata[primary_key]
-        userid = selecteddata[0]
-        fname = selecteddata[1]
-        lname = selecteddata[2]
-        phone = selecteddata[3]
-
-        self.ff.form("Edit user", (("User ID", userid, False), ("First Name", fname, True, True), ("Last Name", lname, True, True), ("Phone number", phone)), self.edit_submit)
-
-    def edit_submit(self, data):
-        userid = data["User ID"]
-        fname = data["First Name"]
-        lname = data["Last Name"]
-        phone = data["Phone number"]
-        
-        self.cur.execute("UPDATE users SET first_name = '"+fname+"', last_name = '"+lname+"', phone = '"+phone+"' WHERE userid = '"+userid+"'")
-        self.con.commit()
-        self.ff.update_database_display()
-
-    def delete(self, primary_key):
-        primary_key = primary_key[0]
-        self.cur.execute("SELECT * FROM users")
-        alldata = self.cur.fetchall()
-        selecteddata = alldata[primary_key]
-        userid = selecteddata[0]
-        fname = selecteddata[1]
-        lname = selecteddata[2]
-
-        if self.ff.question("Delete "+fname+" "+lname+"?") == "yes":
-            self.cur.execute("DELETE FROM users WHERE userid = "+str(userid))
-            self.con.commit()
-            self.ff.update_database_display()
-
-    def script(self):
-
+    def openoutput(self):
+        scr = self.ff.settings_get("Output location")
+        subprocess.Popen(r'explorer /select,"'+scr+'"')
     
-    def script_edit(self):
-        
-
-"""   
+    def isnumber(self, txt):
+        for ch in txt:
+            if not ch in "0123456789":
+                return False
+        return True
 
 main()
