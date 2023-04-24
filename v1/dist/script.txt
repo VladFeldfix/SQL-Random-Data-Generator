@@ -1,4 +1,5 @@
-FIELD(first_name,first_names.lst)
-FIELD(last_name,last_names.lst)
-FIELD(phone,phones.lst)
-FIELD(sex,genders.lst)
+TABLE_NAME orders
+ENTRIES 10000
+# p_id INT 1 1000
+# w_id INT 1 250
+# quantity INT 1 100

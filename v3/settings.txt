@@ -1,0 +1,4 @@
+Resources location --> resources
+Output location --> output
+Table Name --> users
+Enteries --> 50

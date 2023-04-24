@@ -7,7 +7,7 @@ class main:
     def __init__(self):
         # activate GUI
         main_menu = (("RUN", self.run), ("CSV -> SQL", self.csv_to_sql), ("EDIT SCRIPT", self.edit_script), ("RESOURCES", self.resources), ("OUTPUT", self.openoutput))
-        self.ff = ff("SQL-RANDOM-DATA-GENERATOR", "2.0", main_menu)
+        self.ff = ff("SQL-RANDOM-DATA-GENERATOR", "1.0", main_menu)
 
         # run gui
         self.ff.run()
@@ -15,14 +15,7 @@ class main:
     def run(self):
         self.ff.clear()
         # read script
-        file = open("script.txt", 'r')
-        lines = file.readlines()
-        file.close()
-        script = []
-        for line in lines:
-            line = line.replace("FIELD(","").replace(")", "").replace("\n", "")
-            line = line.split(",")
-            script.append((line[0], line[1], line[2]))
+        script = self.ff.read_script("script.txt")
 
         # get settings
         scr = self.ff.settings_get("Resources location")
@@ -35,12 +28,11 @@ class main:
         SCRIPT = []
         for line in script:
             # SPLIT LINE TO PARAMETERS
-            field_name = line[0] # the name of the field you want to generate for. e.g. username
-            lst_filename = line[1] # name of the .lst file to take data from. e.g. first_names.lst
-            data_type = line[2] # the type of data VARCHAR
+            field_name = line[1][0] # the name of the field you want to generate for. e.g. username
+            lst_filename = line[1][1] # name of the .lst file to take data from. e.g. first_names.lst
 
             # ADD TO SCRIPT
-            SCRIPT.append((field_name, lst_filename, data_type))
+            SCRIPT.append((field_name, lst_filename))
         
         # create datasheet
         DATA = {}

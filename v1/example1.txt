@@ -1,0 +1,10 @@
+TABLE_NAME customers
+ENTRIES 10000
+# id_number INT 100000000 999999999 UNIQUE
+# username STR 5 10 LOWERCASE UPPERCASE NUMBERS UNIQUE 
+# password STR 6 12 LOWERCASE UPPERCASE NUMBERS
+# first_name LST first_names.lst
+# last_name LST last_names.lst
+# sex CHAR M F
+# phone_number LST phones.lst
+# city INT 1 100000

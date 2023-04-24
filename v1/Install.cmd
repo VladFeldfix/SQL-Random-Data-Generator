@@ -1,1 +1,1 @@
-pyinstaller -i favicon.ico --noconsole --onefile SQL-RANDOM-DATA-GENERATOR.py
+pyinstaller --onefile --icon=favicon.ico main.py
