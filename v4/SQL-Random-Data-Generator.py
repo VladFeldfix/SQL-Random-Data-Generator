@@ -9,6 +9,7 @@ class main:
         
         # set-up main memu
         self.sc.add_main_menu_item("RUN", self.run)
+        self.sc.add_main_menu_item("CSV -> SQL", self.csv_sql)
         self.sc.add_main_menu_item("EDIT SCRIPT", self.edit_script)
 
         # get settings
@@ -76,6 +77,7 @@ class main:
     def generate(self):
         data = {}
         fields = []
+        outputfile = open(self.path_main+"/output.txt", 'w')
         for field_name, values in self.values.items():
             data[field_name] = []
             fields.append(field_name)
@@ -89,9 +91,36 @@ class main:
             add = add[:-1]
             output += add
             output += ");"
-            self.sc.print(output)
+            outputfile.write(output+"\n")
+        outputfile.close()
+        os.popen(self.path_main+"/output.txt")
         
     def name_table(self,arguments):
         self.table_name = arguments[0]
+    
+    def csv_sql(self):
+        # get path
+        path = self.sc.input("Insert path to csv file")
+        self.sc.test_path(path)
+        path = path.replace("\\", "/")
+        filename = path.split("/")
+        filename = filename[-1]
+        filename = filename.split(".")
+        filename = filename[0]
 
+        # read data from csv file
+        file = open(path, 'r')
+        lines = file.readlines()
+        file.close()
+
+        # go over each line
+        outputfile = open(self.path_main+"/output.txt", 'w')
+        for line in lines:
+            output = "INSERT INTO "+filename+" VALUES ("+str(line).replace("\n","")+");"
+            outputfile.write(output+"\n")
+        outputfile.close()
+        os.popen(self.path_main+"/output.txt")
+        
+        # restart
+        self.sc.restart()
 main()
