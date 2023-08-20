@@ -1,4 +1,4 @@
 TABLE_NAME(Users)
-FIELD(username, names.txt, VARCHAR)
+FIELD(name, names.txt, VARCHAR)
 FIELD(gender, genders.txt, VARCHAR)
 FIELD(age, numbers.txt, NUMBER)
