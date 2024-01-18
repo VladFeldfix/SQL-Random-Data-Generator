@@ -1,2 +1,0 @@
-TABLE_NAME cities
-GENERATE_FULL cities.lst
