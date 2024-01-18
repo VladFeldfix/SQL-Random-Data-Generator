@@ -1,0 +1,1 @@
+pyinstaller -i favicon.ico  --onefile SQL-RANDOM-DATA-GENERATOR.py
