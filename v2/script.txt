@@ -1,4 +1,0 @@
-FIELD(first_name,first_names.lst)
-FIELD(last_name,last_names.lst)
-FIELD(phone,phones.lst)
-FIELD(sex,genders.lst)
