@@ -1,4 +1,0 @@
-FIELD(first_name,first_names.lst,VARCHAR)
-FIELD(last_name,last_names.lst,VARCHAR)
-FIELD(phone,phones.lst,VARCHAR)
-FIELD(sex,genders.lst,VARCHAR)
