@@ -1,3 +1,4 @@
+# Download SmartConsole.py from: https://github.com/VladFeldfix/Smart-Console/blob/main/SmartConsole.py
 from SmartConsole import *
 import random
 
@@ -5,7 +6,7 @@ class main:
     # constructor
     def __init__(self):
         # load smart console
-        self.sc = SmartConsole("SQL Random Data Generator", "4.0")
+        self.sc = SmartConsole("SQL Random Data Generator", "1.0")
         
         # set-up main memu
         self.sc.add_main_menu_item("RUN", self.run)

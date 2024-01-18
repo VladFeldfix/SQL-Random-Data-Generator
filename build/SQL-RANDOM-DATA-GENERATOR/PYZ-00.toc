@@ -1,4 +1,4 @@
-('D:\\Users\\Vlad\\Projects\\Applications\\SQL-Random-Data-Generator\\v4\\build\\SQL-RANDOM-DATA-GENERATOR\\PYZ-00.pyz',
+('D:\\Users\\Vlad\\Projects\\Applications\\SQL-Random-Data-Generator\\build\\SQL-RANDOM-DATA-GENERATOR\\PYZ-00.pyz',
  [('inspect',
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\inspect.py',
@@ -295,6 +295,22 @@
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\ast.py',
    'PYMODULE'),
+  ('_py_abc',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\_py_abc.py',
+   'PYMODULE'),
+  ('stringprep',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\stringprep.py',
+   'PYMODULE'),
+  ('subprocess',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\subprocess.py',
+   'PYMODULE'),
+  ('signal',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\signal.py',
+   'PYMODULE'),
   ('tracemalloc',
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\tracemalloc.py',
@@ -366,22 +382,6 @@
   ('bisect',
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\bisect.py',
-   'PYMODULE'),
-  ('_py_abc',
-   'C:\\Users\\HP '
-   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\_py_abc.py',
-   'PYMODULE'),
-  ('subprocess',
-   'C:\\Users\\HP '
-   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\subprocess.py',
-   'PYMODULE'),
-  ('signal',
-   'C:\\Users\\HP '
-   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\signal.py',
-   'PYMODULE'),
-  ('stringprep',
-   'C:\\Users\\HP '
-   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\stringprep.py',
    'PYMODULE'),
   ('random',
    'C:\\Users\\HP '

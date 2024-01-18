@@ -1,5 +1,5 @@
-(['D:\\Users\\Vlad\\Projects\\Applications\\SQL-Random-Data-Generator\\v4\\SQL-RANDOM-DATA-GENERATOR.py'],
- ['D:\\Users\\Vlad\\Projects\\Applications\\SQL-Random-Data-Generator\\v4'],
+(['D:\\Users\\Vlad\\Projects\\Applications\\SQL-Random-Data-Generator\\SQL-RANDOM-DATA-GENERATOR.py'],
+ ['D:\\Users\\Vlad\\Projects\\Applications\\SQL-Random-Data-Generator'],
  ['codecs'],
  ['C:\\Users\\HP '
   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks\\stdhooks',
@@ -25,7 +25,7 @@
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
    'PYSOURCE'),
   ('SQL-Random-Data-Generator',
-   'D:\\Users\\Vlad\\Projects\\Applications\\SQL-Random-Data-Generator\\v4\\SQL-Random-Data-Generator.py',
+   'D:\\Users\\Vlad\\Projects\\Applications\\SQL-Random-Data-Generator\\SQL-Random-Data-Generator.py',
    'PYSOURCE')],
  [('inspect',
    'C:\\Users\\HP '
@@ -323,6 +323,22 @@
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\ast.py',
    'PYMODULE'),
+  ('_py_abc',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\_py_abc.py',
+   'PYMODULE'),
+  ('stringprep',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\stringprep.py',
+   'PYMODULE'),
+  ('subprocess',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\subprocess.py',
+   'PYMODULE'),
+  ('signal',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\signal.py',
+   'PYMODULE'),
   ('tracemalloc',
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\tracemalloc.py',
@@ -395,22 +411,6 @@
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\bisect.py',
    'PYMODULE'),
-  ('_py_abc',
-   'C:\\Users\\HP '
-   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\_py_abc.py',
-   'PYMODULE'),
-  ('subprocess',
-   'C:\\Users\\HP '
-   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\subprocess.py',
-   'PYMODULE'),
-  ('signal',
-   'C:\\Users\\HP '
-   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\signal.py',
-   'PYMODULE'),
-  ('stringprep',
-   'C:\\Users\\HP '
-   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\stringprep.py',
-   'PYMODULE'),
   ('random',
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\random.py',
@@ -443,13 +443,13 @@
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\SmartConsole.py',
    'PYMODULE')],
- [('VCRUNTIME140.dll',
-   'C:\\Users\\HP '
-   'User\\AppData\\Local\\Programs\\Python\\Python311\\VCRUNTIME140.dll',
-   'BINARY'),
-  ('python311.dll',
+ [('python311.dll',
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\python311.dll',
+   'BINARY'),
+  ('VCRUNTIME140.dll',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\VCRUNTIME140.dll',
    'BINARY'),
   ('_lzma.pyd',
    'C:\\Users\\HP '
@@ -483,17 +483,17 @@
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_decimal.pyd',
    'EXTENSION'),
-  ('libcrypto-1_1.dll',
-   'C:\\Users\\HP '
-   'User\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\libcrypto-1_1.dll',
-   'BINARY'),
   ('libssl-1_1.dll',
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\libssl-1_1.dll',
+   'BINARY'),
+  ('libcrypto-1_1.dll',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\libcrypto-1_1.dll',
    'BINARY')],
  [],
  [],
  [('base_library.zip',
-   'D:\\Users\\Vlad\\Projects\\Applications\\SQL-Random-Data-Generator\\v4\\build\\SQL-RANDOM-DATA-GENERATOR\\base_library.zip',
+   'D:\\Users\\Vlad\\Projects\\Applications\\SQL-Random-Data-Generator\\build\\SQL-RANDOM-DATA-GENERATOR\\base_library.zip',
    'DATA')],
  [])
