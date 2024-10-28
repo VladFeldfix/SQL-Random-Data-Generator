@@ -1,4 +1,4 @@
-('D:\\Users\\Vlad\\Projects\\Applications\\SQL-Random-Data-Generator\\build\\SQL-RANDOM-DATA-GENERATOR\\PYZ-00.pyz',
+('D:\\Users\\Vlad\\Projects\\Applicationss\\SQL-Random-Data-Generator\\build\\SQL-RANDOM-DATA-GENERATOR\\PYZ-00.pyz',
  [('inspect',
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\inspect.py',
@@ -295,14 +295,6 @@
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\ast.py',
    'PYMODULE'),
-  ('_py_abc',
-   'C:\\Users\\HP '
-   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\_py_abc.py',
-   'PYMODULE'),
-  ('stringprep',
-   'C:\\Users\\HP '
-   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\stringprep.py',
-   'PYMODULE'),
   ('subprocess',
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\subprocess.py',
@@ -330,6 +322,10 @@
   ('_compat_pickle',
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\_compat_pickle.py',
+   'PYMODULE'),
+  ('_py_abc',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\_py_abc.py',
    'PYMODULE'),
   ('getpass',
    'C:\\Users\\HP '
@@ -383,6 +379,10 @@
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\bisect.py',
    'PYMODULE'),
+  ('stringprep',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\stringprep.py',
+   'PYMODULE'),
   ('random',
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\random.py',
@@ -414,4 +414,20 @@
   ('SmartConsole',
    'C:\\Users\\HP '
    'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\SmartConsole.py',
+   'PYMODULE'),
+  ('termcolor',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\termcolor\\__init__.py',
+   'PYMODULE'),
+  ('termcolor.termcolor',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\termcolor\\termcolor.py',
+   'PYMODULE'),
+  ('termcolor._types',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\termcolor\\_types.py',
+   'PYMODULE'),
+  ('__future__',
+   'C:\\Users\\HP '
+   'User\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__future__.py',
    'PYMODULE')])
